@@ -28,7 +28,7 @@ export default function Login() {
       navigate("/");
     }
     // eslint-disable-next-line
-  }, []);
+  }, [user]);
 
   return (
     <div className="container shadow-lg rounded-md mx-auto w-[60%] p-10 bg-fuchsia-100">

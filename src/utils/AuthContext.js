@@ -29,18 +29,20 @@ export const AuthContextProvider = (props) => {
     setLoading(false);
   };
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
+    await account.deleteSession("current");
     setUser(null);
   };
 
   const registerUser = (userInfo) => {};
 
   const checkUserStatus = async () => {
+    setLoading(true);
     try {
       let accountDetails = await account.get();
       setUser(accountDetails);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
     setLoading(false);
   };
