@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/AuthContext";
 
+// Styling
 const labelStyle = "col-span-1 font-bold";
 const inputStyle =
   "col-span-3 border-2 focus:bg-fuchsia-100 focus:outline-none focus:border-fuchsia-600 rounded-lg font-semibold p-2 px-4";
@@ -10,7 +11,17 @@ const buttonStyle =
 
 export default function Login() {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loginUser } = useAuth();
+  const loginValues = useRef();
+
+  const loginDataHandler = async (e) => {
+    e.preventDefault();
+    const email = loginValues.current.email.value;
+    const password = loginValues.current.password.value;
+
+    const userInfo = { email, password };
+    loginUser(userInfo);
+  };
 
   useEffect(() => {
     if (user) {
@@ -22,7 +33,11 @@ export default function Login() {
   return (
     <div className="container shadow-lg rounded-md mx-auto w-[60%] p-10 bg-fuchsia-100">
       <div className="login-register-container">
-        <form className="grid grid-cols-4 gap-4">
+        <form
+          className="grid grid-cols-4 gap-4"
+          ref={loginValues}
+          onSubmit={loginDataHandler}
+        >
           <label className={labelStyle}>Email:</label>
           <input
             className={inputStyle}

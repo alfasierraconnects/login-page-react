@@ -6,7 +6,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const { user } = useAuth();
-  console.log(user);
+  // console.log(user);
 
   const logoutClick = () => {
     navigate("/login");
