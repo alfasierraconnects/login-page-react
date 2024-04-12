@@ -9,7 +9,7 @@ const buttonStyle =
 
 export default function Login() {
   return (
-    <div className="container shadow-lg rounded-md mx-auto p-20 bg-fuchsia-100">
+    <div className="container shadow-lg rounded-md mx-auto w-[60%] p-10 bg-fuchsia-100">
       <div className="login-register-container">
         <form className="grid grid-cols-4 gap-4">
           <label className={labelStyle}>Email:</label>

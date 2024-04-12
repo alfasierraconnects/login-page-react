@@ -9,7 +9,7 @@ const buttonStyle =
 
 const Register = () => {
   return (
-    <div className="container mx-auto p-20 bg-fuchsia-100 shadow-lg rounded-md ">
+    <div className="container mx-auto w-[60%] p-10 bg-fuchsia-100 shadow-lg rounded-md ">
       <form className="grid grid-cols-4 gap-4">
         <label className={labelStyle}>Name:</label>
         <input
