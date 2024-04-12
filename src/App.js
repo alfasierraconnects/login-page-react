@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Footer from "./components/Footer";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { AuthContextProvider } from "./utils/AuthContext";
+import ErrorModal from "./components/ErrorModal";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/error" element={<ErrorModal />} />
 
             <Route element={<PrivateRoutes />}>
               <Route path="/" element={<Home />} />

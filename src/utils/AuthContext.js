@@ -12,6 +12,7 @@ export const AuthContextProvider = (props) => {
 
   useEffect(() => {
     checkUserStatus();
+    // eslint-disable-next-line
   }, []);
 
   const loginUser = async (userInfo) => {
@@ -28,6 +29,7 @@ export const AuthContextProvider = (props) => {
       // console.log(response);
     } catch (error) {
       console.error(error);
+      navigate("/error", { state: { message: error.message } });
     }
     setLoading(false);
   };
@@ -58,6 +60,7 @@ export const AuthContextProvider = (props) => {
       navigate("/");
     } catch (error) {
       console.error(error);
+      navigate("/error", { state: { message: error.message } });
     }
 
     setLoading(false);
