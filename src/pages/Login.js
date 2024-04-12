@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../utils/AuthContext";
 
 const labelStyle = "col-span-1 font-bold";
 const inputStyle =
@@ -8,6 +9,16 @@ const buttonStyle =
   "col-span-4 bg-fuchsia-600 p-2 px-10 rounded-full font-semibold text-lg text-white justify-self-center hover:bg-fuchsia-700 hover:shadow-xl active:bg-fuchsia-800 active:shadow-none";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div className="container shadow-lg rounded-md mx-auto w-[60%] p-10 bg-fuchsia-100">
       <div className="login-register-container">
