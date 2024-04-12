@@ -7,17 +7,21 @@ export const AuthContextProvider = (props) => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
 
-  useEffect(() => setLoading(false), []);
+  useEffect(() => {
+    checkUserStatus();
+  }, []);
 
   const loginUser = async (userInfo) => {
     setLoading(true);
     try {
+      // eslint-disable-next-line
       let response = await account.createEmailPasswordSession(
         userInfo.email,
         userInfo.password
       );
       let accountDetails = await account.get();
-      console.log(accountDetails);
+      // console.log(accountDetails);
+      setUser(accountDetails);
       // console.log(response);
     } catch (error) {
       console.error(error);
@@ -28,8 +32,18 @@ export const AuthContextProvider = (props) => {
   const logoutUser = () => {
     setUser(null);
   };
+
   const registerUser = (userInfo) => {};
-  const checkUserStatus = () => {};
+
+  const checkUserStatus = async () => {
+    try {
+      let accountDetails = await account.get();
+      setUser(accountDetails);
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  };
 
   const contextValue = {
     user,
