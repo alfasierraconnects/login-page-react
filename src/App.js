@@ -11,8 +11,8 @@ import { AuthContextProvider } from "./utils/AuthContext";
 function App() {
   return (
     <div className="flex flex-col justify-between min-h-screen">
-      <AuthContextProvider>
-        <Router>
+      <Router>
+        <AuthContextProvider>
           <Navbar />
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -23,8 +23,8 @@ function App() {
               <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
-        </Router>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </Router>
       <Footer />
     </div>
   );

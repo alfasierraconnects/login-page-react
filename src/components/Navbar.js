@@ -25,9 +25,12 @@ export default function Navbar() {
           </button>
         </div>
       ) : (
-        <button className="bg-pink-500 p-1 px-6 rounded-full hover:bg-pink-600 hover:shadow-lg active:bg-pink-500 active:shadow-none font-semibold text-lg">
+        <Link
+          to="/login"
+          className="bg-pink-500 p-1 px-6 rounded-full hover:bg-pink-600 hover:shadow-lg active:bg-pink-500 active:shadow-none font-semibold text-lg"
+        >
           Login
-        </button>
+        </Link>
       )}
     </nav>
   );

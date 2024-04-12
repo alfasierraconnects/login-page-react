@@ -1,9 +1,12 @@
 import { useContext, createContext, useEffect, useState } from "react";
 import { account } from "../appwriteConfig";
+import { useNavigate } from "react-router-dom";
+import { ID } from "appwrite";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -34,7 +37,31 @@ export const AuthContextProvider = (props) => {
     setUser(null);
   };
 
-  const registerUser = (userInfo) => {};
+  const registerUser = async (userInfo) => {
+    setLoading(true);
+
+    try {
+      // eslint-disable-next-line
+      let response = await account.create(
+        ID.unique(),
+        userInfo.email,
+        userInfo.password1,
+        userInfo.name
+      );
+
+      await account.createEmailPasswordSession(
+        userInfo.email,
+        userInfo.password1
+      );
+      let accountDetails = await account.get();
+      setUser(accountDetails);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+
+    setLoading(false);
+  };
 
   const checkUserStatus = async () => {
     setLoading(true);
